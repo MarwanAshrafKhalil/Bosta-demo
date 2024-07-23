@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  font-family: 'Cairo', sans-serif;
+}
+
+body {
+  @apply bg-white text-black text-lg;
+}
+
+h1 {
+  @apply text-black text-5xl font-bold;
+}
+
+h3 {
+  @apply text-black text-2xl font-semibold;
+}
+
+span {
+  @apply font-medium text-base;
+}
+
+p {
+  @apply text-xl font-bold;
+}
+
+th {
+  @apply text-gray-400 text-lg font-semibold;
+}
+
+td {
+  @apply text-base font-medium;
+}
