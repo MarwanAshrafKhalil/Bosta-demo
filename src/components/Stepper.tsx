@@ -1,47 +1,47 @@
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../redux/app/hooks';
-import { fetchShipmentData } from '../redux/features/shipment/shipment.action';
+import { TransitEventsType } from '../dataTypes';
+import { useTranslation } from 'react-i18next';
 
-const shipmentState = [
-  'Shipment Created',
-  'Shipment Received',
-  'Out for Delivery',
-  'Delivered',
-];
+export default function Stepper({
+  transitEvents,
+}: {
+  transitEvents: TransitEventsType[];
+}) {
+  const [t, i18n] = useTranslation();
 
-let apiStates = [
-  { state: 'TICKET_CREATED', timestamp: '', hub: '' },
-  { state: 'PACKAGE_RECEIVED', timestamp: '', hub: '' },
-  { state: 'OUT_FOR_DELIVERY', timestamp: '', hub: '' },
-  { state: 'DELIVERED', timestamp: '', hub: '' },
-];
-export default function Stepper({ id }: { id: string }) {
-  console.log(id);
-  const dispatch = useAppDispatch();
-  const data = useAppSelector((state) => state.shipment.data);
-  const currStatus = data?.TransitEvents;
+  const shipmentState = [
+    'Shipment Created',
+    'Shipment Received',
+    'Out for Delivery',
+    'Delivered',
+  ];
 
-  const reversedStatus = currStatus ? [...currStatus].reverse() : [];
-
-  if (currStatus) {
-    console.log(currStatus);
-    console.log(reversedStatus);
-  }
-
-  useEffect(() => {
-    const fetching = async () => await dispatch(fetchShipmentData(id));
-    fetching();
-  }, [dispatch, id]);
   let stepperColor = '';
 
-  if (reversedStatus && reversedStatus.length > 0) {
+  let apiStates = [
+    { state: 'TICKET_CREATED', timestamp: '', hub: '', reason: '' },
+    { state: 'PACKAGE_RECEIVED', timestamp: '', hub: '', reason: '' },
+    { state: 'OUT_FOR_DELIVERY', timestamp: '', hub: '', reason: '' },
+    { state: 'DELIVERED', timestamp: '', hub: '', reason: '' },
+  ];
+
+  const currStatus = transitEvents;
+  const reversedStatus = currStatus ? [...currStatus].reverse() : [];
+
+  if (currStatus && reversedStatus && reversedStatus.length > 0) {
     apiStates = apiStates.map((item) => {
       const match = reversedStatus.find((curr) => curr.state === item.state);
       if (match) {
-        return { ...item, timestamp: match.timestamp, hub: match.hub || '' };
+        return {
+          ...item,
+          timestamp: match.timestamp,
+          hub: match.hub || '',
+          reason: match.reason || '',
+        };
       }
       return item;
     });
+
+    console.log(reversedStatus[0].state === 'DELIVERED');
 
     if (reversedStatus[0].state === 'DELIVERED') {
       stepperColor = 'step-accent';
@@ -52,30 +52,37 @@ export default function Stepper({ id }: { id: string }) {
     }
   }
 
+  console.log(stepperColor);
+  console.log(reversedStatus[0].state);
   console.log(apiStates);
   return (
-    <div className=" steps my-10">
-      <ul className="steps">
-        {reversedStatus &&
-          apiStates.map((item, index) =>
-            item.timestamp ? (
-              <li key={index} className={`step ${stepperColor}`}>
-                {shipmentState[index]}
-              </li>
-            ) : (
-              <li key={index} className="step ">
-                {shipmentState[index]}
-              </li>
-            )
-          )}
-
-        {/* <li className="step step-primary" data-content="✓">
-          Register
-        </li>
-        <li className="step step-primary">Choose plan</li>
-        <li className="step">Purchase</li>
-        <li className="step">Receive Product</li> */}
-      </ul>
-    </div>
+    <>
+      {transitEvents && transitEvents.length > 0 && (
+        <div className=" steps my-10">
+          <ul className="steps">
+            {reversedStatus &&
+              apiStates.map((item, index) =>
+                item.timestamp ? (
+                  <li
+                    key={index}
+                    data-content="✓"
+                    className={`step  ${stepperColor}`}
+                  >
+                    <span className="font-bold">
+                      {t(`shipmentStates.${shipmentState[index]}`)}
+                    </span>
+                  </li>
+                ) : (
+                  <li key={index} data-content="●" className="step ">
+                    <span className="font-bold text-gray-400">
+                      {t(`shipmentStates.${shipmentState[index]}`)}
+                    </span>
+                  </li>
+                )
+              )}
+          </ul>
+        </div>
+      )}
+    </>
   );
 }

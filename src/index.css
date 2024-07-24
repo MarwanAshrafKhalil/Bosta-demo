@@ -30,5 +30,5 @@ th {
 }
 
 td {
-  @apply text-base font-medium;
+  @apply sm:text-base text-sm font-medium;
 }

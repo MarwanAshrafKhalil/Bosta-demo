@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 type HelpDivProps = {
   headline: string;
   buttonText: string;
@@ -5,13 +7,15 @@ type HelpDivProps = {
 };
 
 export default function HelpDiv({ headline, buttonText, image }: HelpDivProps) {
+  const [t, i18n] = useTranslation();
+
   return (
-    <div className="flex flex-row bg-white items-center justify-between gap-2 rounded-xl border p-2">
+    <div className="flex flex-row-reverse bg-white items-center justify-between gap-2 rounded-xl border p-2">
       <img src={image} alt="image" className="object-contain w-24 " />
       <div className="flex flex-col gap-2">
-        <p>{headline}</p>
+        <p>{t(`${headline}`)}</p>
         <button className="rounded-full bg-primary text-white text-base">
-          {buttonText}
+          {t(`${buttonText}`)}
         </button>
       </div>
     </div>

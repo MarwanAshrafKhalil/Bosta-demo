@@ -3,6 +3,7 @@ import App from './App.tsx';
 import './index.css';
 import { Provider } from 'react-redux';
 import { store } from './redux/app/store.ts';
+import './i18n';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>

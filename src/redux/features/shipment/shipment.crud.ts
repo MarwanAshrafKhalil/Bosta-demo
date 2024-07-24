@@ -1,4 +1,4 @@
-import { ShipmentDataType } from '../../../components/Stepper';
+import { ShipmentDataType } from '../../../dataTypes';
 
 export async function fetchApi(id: string) {
   try {

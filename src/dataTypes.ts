@@ -8,15 +8,18 @@ export type ShipmentDataType = {
   TrackingNumber: string;
   TrackingURL: string;
   SupportPhoneNubmers: string[];
-  TransitEvents: {
-    state: string;
-    timestamp: string;
-    hub: string;
-  }[];
+  TransitEvents: TransitEventsType[];
   CreateDate: string;
   isEditableShipment: boolean;
   nextWorkingDay: {
     dayDate: string;
     dayName: string;
   }[];
+};
+
+export type TransitEventsType = {
+  state: string;
+  timestamp: string;
+  hub: string;
+  reason: string;
 };

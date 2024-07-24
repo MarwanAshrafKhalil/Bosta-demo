@@ -3,14 +3,14 @@ import { ShipmentDataType } from '../../../dataTypes';
 
 type ShipmentState = {
   shipmentId: string;
-  data: ShipmentDataType | Record<string, never>;
+  data: ShipmentDataType | null;
   isLoading: boolean;
   error: string;
 };
 
 const initialState: ShipmentState = {
   shipmentId: '',
-  data: {},
+  data: null,
   isLoading: false,
   error: '',
 };
