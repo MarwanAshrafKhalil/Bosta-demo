@@ -22,7 +22,6 @@ export default function TableInfo({ info }: TableInfoType) {
     setUpdatedInfo(newInfo);
   }, [info]);
 
-  console.log(updatedInfo);
   return (
     <>
       {updatedInfo && (

@@ -10,7 +10,6 @@ export async function fetchApi(id: string) {
     );
 
     const data: ShipmentDataType = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     return error;

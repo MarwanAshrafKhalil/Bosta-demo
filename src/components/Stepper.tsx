@@ -41,8 +41,6 @@ export default function Stepper({
       return item;
     });
 
-    console.log(reversedStatus[0].state === 'DELIVERED');
-
     if (reversedStatus[0].state === 'DELIVERED') {
       stepperColor = 'step-accent';
     } else if (reversedStatus[0].state === 'CANCELLED') {
@@ -52,9 +50,6 @@ export default function Stepper({
     }
   }
 
-  console.log(stepperColor);
-  console.log(reversedStatus[0].state);
-  console.log(apiStates);
   return (
     <>
       {transitEvents && transitEvents.length > 0 && (
