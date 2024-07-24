@@ -17,7 +17,7 @@ export default function InfoBar({
   provider,
   estDate,
 }: InfoBarType) {
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   return (
     <>

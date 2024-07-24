@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function DelAddress() {
   return (
     <div className="rounded-xl border text-end bg-gray-50 p-2">

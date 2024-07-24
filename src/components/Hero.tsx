@@ -2,7 +2,7 @@ import hero from '../assets/hero.jpg';
 import { useTranslation } from 'react-i18next';
 
 export default function Hero() {
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   return (
     <div className="flex flex-col items-center justify-center gap-10 my-10 mx-auto">

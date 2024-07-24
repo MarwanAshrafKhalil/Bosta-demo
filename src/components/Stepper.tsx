@@ -6,7 +6,7 @@ export default function Stepper({
 }: {
   transitEvents: TransitEventsType[];
 }) {
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   const shipmentState = [
     'Shipment Created',

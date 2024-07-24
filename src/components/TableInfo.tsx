@@ -9,7 +9,7 @@ type TableInfoType = {
 
 export default function TableInfo({ info }: TableInfoType) {
   const [updatedInfo, setUpdatedInfo] = useState<TransitEventsType[]>([]);
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   useEffect(() => {
     const newInfo = info.map((item) => {

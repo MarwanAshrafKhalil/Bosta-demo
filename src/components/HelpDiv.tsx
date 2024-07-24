@@ -7,7 +7,7 @@ type HelpDivProps = {
 };
 
 export default function HelpDiv({ headline, buttonText, image }: HelpDivProps) {
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   return (
     <div className="flex flex-row-reverse bg-white items-center justify-between gap-2 rounded-xl border p-2">
